@@ -1,0 +1,21 @@
+name: Build and deploy to Minikube
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    # A self-hosted runner is required because GitHub-hosted runners cannot
+    # access a developer's local Minikube cluster.
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy and wait for rollout
+        shell: pwsh
+        run: |
+          ./scripts/deploy.ps1 -ImageTag "${{ github.sha }}"

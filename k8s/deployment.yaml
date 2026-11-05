@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-lab2
+  namespace: devops-lab2
+  labels:
+    app: devops-lab2
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: devops-lab2
+  template:
+    metadata:
+      labels:
+        app: devops-lab2
+    spec:
+      containers:
+        - name: web
+          image: devops-lab2:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: APP_VERSION
+              value: "1.0.0"
+            - name: STUDENT_NAME
+              value: "Kartik Kumar"
+            - name: STUDENT_ROLL
+              value: "2301730205"
+            - name: STUDENT_EMAIL
+              value: "kartikjangra5366@gmail.com"
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-lab2
+  namespace: devops-lab2
+spec:
+  type: NodePort
+  selector:
+    app: devops-lab2
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      nodePort: 30080

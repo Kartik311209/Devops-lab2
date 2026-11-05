@@ -1,0 +1,15 @@
+PASS GET /healthz HTTP 200
+{"status": "ok", "check": "healthz"}
+PASS GET /readyz HTTP 200
+{"status": "ok", "check": "readyz"}
+PASS GET /api/info HTTP 200
+{
+  "application": "devops-lab2",
+  "version": "1.0.0",
+  "student": {
+    "name": "Kartik Kumar",
+    "roll_number": "2301730205",
+    "email": "kartikjangra5366@gmail.com"
+  },
+  "served_at_utc": "2026-11-05T11:37:38.506238+00:00"
+}

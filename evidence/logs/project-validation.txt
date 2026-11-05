@@ -1,0 +1,18 @@
+PASS Python source parses
+PASS Kubernetes namespace manifest parses
+PASS Deployment and Service manifests parse
+PASS Deployment has two replicas and rolling update policy
+PASS GitHub Actions workflow parses and has deploy job
+PASS Exactly four experiment PDFs exist
+PASS Experiment_1_Docker_Image_Container_Workflow.pdf has 2 readable pages and all report sections
+PASS Experiment_2_Kubernetes_Deployment_Scaling.pdf has 2 readable pages and all report sections
+PASS Experiment_3_Kubernetes_Rolling_Update_Rollback.pdf has 2 readable pages and all report sections
+PASS Experiment_4_Continuous_Deployment_to_Minikube.pdf has 2 readable pages and all report sections
+PASS Screenshot opens: powershell-cd-config.png (1550x878)
+PASS Screenshot opens: powershell-cd-deploy.png (1550x878)
+PASS Screenshot opens: powershell-docker-attempt.png (1550x878)
+PASS Screenshot opens: powershell-docker-run.png (1550x878)
+PASS Screenshot opens: powershell-kubernetes-attempt.png (1550x878)
+PASS Screenshot opens: powershell-kubernetes-scale.png (1550x878)
+PASS Screenshot opens: powershell-rollout-attempt.png (1550x878)
+PASS Screenshot opens: powershell-rollout-rollback.png (1550x878)
